@@ -1,27 +1,88 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## DB について
 
-Things you may want to cover:
+### DB 作成
 
-- Ruby version
+```
+docker-compose run --rm backend bundle exec rake db:create
+```
 
-- System dependencies
+### マイグレーションファイルを作成（既存のテーブルに変更を加えたい場合）
 
-- Configuration
+```
+docker-compose run --rm backend bundle exec rails g migration User
+```
 
-- Database creation
+### モデルを作成（テーブルを新規に作成したい場合）
 
-- Database initialization
+```
+docker-compose run --rm backend bundle exec rails g model User name:string
+```
 
-- How to run the test suite
+### マイグレーション実施
 
-- Services (job queues, cache servers, search engines, etc.)
+```
+docker-compose run --rm backend bundle exec rake db:migrate
+```
 
-- Deployment instructions
+### DB コンソール
 
-- ...
+User
 
-test
-dddd
+```
+docker-compose run --rm backend bundle exec rails c
+```
+
+#### 件数
+
+```
+User.count
+```
+
+#### 全件
+
+```
+User.all
+```
+
+#### id 検索
+
+```
+User.find(1)
+```
+
+#### 条件検索(1 件)
+
+```
+User.find_by(name: "hoge2")
+```
+
+#### 条件検索(全件)
+
+```
+User.where(name: "hoge2")
+```
+
+#### 登録
+
+```
+User.create(name: "hoge1", age: 19)
+User.create(name: "hoge2", age: 30)
+User.create(name: "hoge3", age: 50)
+```
+
+#### 更新
+
+```
+user = User.find(1)
+user.name = "foo2"
+user.save
+```
+
+#### 削除
+
+```
+user = User.find(1)
+user.delete
+```

@@ -1,0 +1,250 @@
+require:
+  - rubocop-rails
+#  - rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  # NewCops: enable
+  # Rubyのバージョンを指定
+  TargetRubyVersion: 3.0.2
+  # 除外するファイル
+  Exclude:
+    - vendor/bundle/**/*
+    - node_modules/**/*
+    - bin/*
+    - db/**/*
+    - config/**/*
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - test/test_helper.rb
+    - app/**/application_*.rb
+
+#####################
+# Layout
+#####################
+# インデントは2カラムとする
+Layout/IndentationWidth:
+  Enabled: true
+# 1行の最大幅は最大120桁
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+# 空行は許容する
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+  # EnforcedStyle: no_empty_lines
+# 空白行の有無
+Layout/EmptyLines:
+  Enabled: true
+# コメントもインデント調整を行う
+Layout/CommentIndentation:
+  Enabled: true
+# 空のコメント行チェック
+Layout/EmptyComment:
+  Enabled: true
+# ヒアドキュメントのインデントが揃っているかチェック
+Layout/ClosingHeredocIndentation:
+  Enabled: true
+# 閉じ括弧のインデントが揃っているかチェック
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+# ifやwhile、untilで条件式は同じ行に記載していること
+Layout/ConditionPosition:
+  Enabled: true
+# 複数行に跨って命令を記載する際、「.」は前に記載する
+Layout/DotPosition:
+  Enabled: true
+# ifとelseのインデントは同じ位置
+Layout/ElseAlignment:
+  Enabled: true
+# 複数の空白行の許可
+Layout/EmptyLines:
+  Enabled: true
+# 末尾の空白はチェックしない
+Layout/TrailingWhitespace:
+  Enabled: false
+# コメント行は1カラム開けて記載すること
+Layout/LeadingCommentSpace:
+  Enabled: true
+# メソッド間は1行開けること
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+
+#####################
+# Lint
+#####################
+# 変数名の先頭にアンダースコアは付与してもよい
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+# パラメータを渡す際に括弧があること
+Lint/AmbiguousBlockAssociation:
+  Enabled: true
+# 条件式に代入式を指定可能
+Lint/AssignmentInCondition:
+  Enabled: false
+
+#####################
+# Metrics
+#####################
+# ループのネストは制限しない
+Metrics/BlockNesting:
+  Enabled: false
+# メソッドの長さは制限しない
+Metrics/MethodLength:
+  Enabled: false
+
+#####################
+# Naming
+#####################
+# メソッド名に適切な名前であること
+Naming/AccessorMethodName:
+  Enabled: true
+# 名称にアスキー文字列を設定していること
+Naming/AsciiIdentifiers:
+  Enabled: true
+# メソッドのパラメータ名の長さは3文字以上
+Naming/MethodParameterName:
+  Enabled: true
+  MinNameLength: 3
+# ブロックのパラメータ名は分かりやすくする
+Naming/BlockParameterName:
+  Enabled: true
+  MinNameLength: 3
+# クラス/モジュール名はキャメルケースで記載
+Naming/ClassAndModuleCamelCase:
+  Enabled: true
+# 定数名は英数大文字でスネークケースであること
+Naming/ConstantName:
+  Enabled: true
+# ファイル名英字小文字ではスネークケースであること
+Naming/FileName:
+  Enabled: true
+# ヒアドキュメントのデリミタは英字大文字であること
+Naming/HeredocDelimiterCase:
+  Enabled: true
+# ヒアドキュメントのデリミタの名前に制限はない
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+# 名称の制限はしない
+Naming/InclusiveLanguage:
+  Enabled: false
+# https://docs.rubocop.org/rubocop/cops_naming.html#namingmemoizedinstancevariablename
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+# メソッド名はスネークケースであること
+Naming/MethodName:
+  Enabled: true
+# メソッドのパラメータ名はスネークケースであること
+Naming/MethodParameterName:
+  Enabled: true
+# メソッド名でis_やhas_などは末尾に?を付与する
+Naming/PredicateName:
+  Enabled: true
+# 例外処理のパラメータ変数名は短縮系にする（eまたは_e）
+Naming/RescuedExceptionsVariableName:
+  Enabled: true
+# 変数名はスネークケースであること
+Naming/VariableName:
+  Enabled: true
+# 番号付き変数
+Naming/VariableNumber:
+  Enabled: true
+  EnforcedStyle: normalcase
+
+#####################
+# Style
+#####################
+# ソースファイルにUTF8のコメントがないこと
+Style/Encoding:
+  Enabled: false
+# 関係演算子はand or ではなく&& || と記載すること
+Style/AndOr:
+  Enabled: true
+# コメントに「# frozen_string_literal: 」の指定は任意
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# 引数を取らないメソッドの括弧をチェック
+Style/DefWithParentheses:
+  Enabled: false
+# リテラル文字列を設定する場合はダブルクォートであること
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes # single_quotes, double_quotes
+# ClassまたはModuleのドキュメントコメントは任意
+Style/Documentation:
+  Enabled: false
+# Windowsの改行コードの場合はLFに変換
+Style/EndOfLine: 
+  EnforcedStyle: lf
+# クラス内のクラスなどを定義する際の形式はどちらでもよい
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: nested # nested, compact
+# if/Unlessを1行で記載するかの制限はしない
+Style/IfUnlessModifier:
+  Enabled: false
+# while/untilを1行で記載するかの制限はしない
+Style/WhileUntilModifier:
+  Enabled: false
+# 変数を展開する際の展開式を正しく設定する
+Style/VariableInterpolation:
+  Enabled: true
+# if文でセミコロンを使用するかは任意
+Style/IfWithSemicolon:
+  Enabled: false
+# コメントはマルチバイト文字列も許容する
+Style/AsciiComments:
+  Enabled: false
+# ステートメントの後にコメントを許可
+Style/CommentedKeyword:
+  Enabled: false
+# ラムダ式は強制しない
+Style/Lambda:
+  Enabled: false
+# raiseの指定形式
+Style/RaiseArgs:
+  Enabled: true
+  EnforcedStyle: exploded # exploded, compact
+# eachなどを利用した際にif/unless、nextの制御はしない
+Style/Next:
+  Enabled: false
+# 省略可能なreturn文を省略するかは任意
+Style/RedundantReturn:
+  Enabled: false
+# selfは使用しなくてもよい
+Style/RedundantSelf:
+  Enabled: false
+# グローバル変数を定義した場合
+Style/GlobalVars:
+  Enabled: true
+  AllowedVariables: []
+# 複数行に跨るブロック構文はdo - endにする
+Style/BlockDelimiters:
+  Enabled: true
+# if文のみの場合はthenを除外する
+Style/MultilineIfThen:
+  Enabled: true
+# while/untilの複数行のブロックにはdoを使用しない
+Style/WhileUntilDo:
+  Enabled: true
+
+#####################
+# その他
+#####################
+# each_keyとeach_valueの使用をチェック
+Style/HashEachMethods:
+  Enabled: true
+# transform_keys使用チェック
+Style/HashTransformKeys:
+  Enabled: true
+# transform_values使用チェック
+Style/HashTransformValues:
+  Enabled: true
+# railse
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true

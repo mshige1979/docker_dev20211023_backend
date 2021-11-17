@@ -1,9 +1,5 @@
 # DB 周り
 
-## 注意
-
-クライアントツールを起動中の場合は接続しようとしても失敗する。
-
 ## コマンド
 
 ### DB 作成
@@ -44,10 +40,16 @@ TBD
 bundle exec rails db:migrate
 ```
 
-### ロールバック
+### DB の作成からやり直す(Seed あり)
 
 ```
-TBD
+docker-compose run --rm backend bundle exec rake db:reset
+```
+
+### DB の作成からやり直す（Seed なし）
+
+```
+docker-compose run --rm backend bundle exec rake db:migrate:reset
 ```
 
 ## コンソール
@@ -57,5 +59,3 @@ TBD
 ```
 bundle exec rails dbconsole
 ```
-
-※クライアントツールがインストールされていること。
